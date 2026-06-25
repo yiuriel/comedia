@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Pencil, Trash2 } from "lucide-react";
 import { useStore } from "../../store/useStore";
 import { useI18n } from "../../i18n";
+import Button from "../ui/Button";
 import ConfirmDialog from "../ui/ConfirmDialog";
 import type { Concept } from "../../types";
 
@@ -34,21 +35,21 @@ export default function ConceptItem({ concept }: Props) {
 
   if (editing) {
     return (
-      <div className="bg-white rounded-xl border border-gray-100 px-3.5 py-3 space-y-2">
+      <div       className="bg-white rounded-xl border border-gray-200/60 px-3.5 py-3 space-y-2">
         <input
-          className="w-full bg-gray-50 border border-gray-200 rounded-lg px-2.5 py-1.5 text-sm outline-none focus:bg-white focus:border-gray-400 transition-colors"
+          className="w-full bg-white border border-gray-200 rounded-lg px-2.5 py-1.5 text-sm outline-none focus:border-gray-400 focus:ring-2 focus:ring-gray-100 transition-colors"
           value={editName}
           onChange={(e) => setEditName(e.target.value)}
           autoFocus
         />
         <input
-          className="w-full bg-gray-50 border border-gray-200 rounded-lg px-2.5 py-1.5 text-sm outline-none focus:bg-white focus:border-gray-400 transition-colors"
+          className="w-full bg-white border border-gray-200 rounded-lg px-2.5 py-1.5 text-sm outline-none focus:border-gray-400 focus:ring-2 focus:ring-gray-100 transition-colors"
           value={editDesc}
           onChange={(e) => setEditDesc(e.target.value)}
           placeholder={t("concept.description.placeholder")}
         />
         <div className="flex gap-1.5">
-          <button onClick={save} className="text-xs px-3 py-1 bg-gray-900 text-white rounded-md font-medium hover:bg-gray-800 transition-colors">{t("bit.save")}</button>
+          <Button onClick={save} className="text-xs px-3 py-1">{t("bit.save")}</Button>
           <button onClick={() => setEditing(false)} className="text-xs px-3 py-1 text-gray-500 font-medium hover:text-gray-700 transition-colors">{t("bit.cancel")}</button>
         </div>
       </div>
@@ -57,7 +58,7 @@ export default function ConceptItem({ concept }: Props) {
 
   return (
     <>
-      <div className="group bg-white rounded-xl border border-gray-100 px-3.5 py-3 hover:border-gray-200 transition-all">
+      <div       className="group bg-white rounded-xl border border-gray-200/60 px-3.5 py-3 hover:border-gray-200 transition-all">
         <div className="flex items-start gap-3">
           <div className="mt-1.5 h-2 w-2 rounded-full bg-violet-400 shrink-0" />
           <div className="flex-1 min-w-0">

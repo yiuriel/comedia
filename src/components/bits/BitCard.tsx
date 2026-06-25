@@ -4,6 +4,7 @@ import { useStore } from "../../store/useStore";
 import { useI18n } from "../../i18n";
 import TiptapEditor from "../ui/TiptapEditor";
 import ConceptPills from "../ui/ConceptPills";
+import Button from "../ui/Button";
 import ColorPicker from "../ui/ColorPicker";
 import ConfirmDialog from "../ui/ConfirmDialog";
 import { getColorMeta, type Bit, type BitColor } from "../../types";
@@ -65,9 +66,7 @@ export default function BitCard({ bit }: Props) {
         <ColorPicker value={color} onChange={setColor} />
         <ConceptPills concepts={concepts} selected={selectedConcepts} onToggle={toggleConcept} />
         <div className="flex gap-2 pt-1">
-          <button onClick={save} className="px-4 py-2 bg-gray-900 text-white rounded-xl text-sm font-medium hover:bg-gray-800 transition-colors">
-            {t("bit.save")}
-          </button>
+          <Button onClick={save}>{t("bit.save")}</Button>
           <button onClick={cancel} className="px-4 py-2 text-gray-500 text-sm font-medium hover:text-gray-700 transition-colors">
             {t("bit.cancel")}
           </button>
@@ -106,7 +105,7 @@ export default function BitCard({ bit }: Props) {
             </div>
             <button
               onClick={(e) => { e.stopPropagation(); handleDelete(); }}
-              className="p-1 rounded-md text-gray-300 opacity-0 group-hover:opacity-100 hover:bg-red-50 hover:text-red-500 transition-all shrink-0"
+              className="p-1 rounded-md text-gray-300 opacity-0 group-hover:opacity-100 hover:bg-red-50 hover:text-red-600 transition-all shrink-0"
             >
               <Trash2 size={13} />
             </button>

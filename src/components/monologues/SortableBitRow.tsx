@@ -44,7 +44,7 @@ export default function SortableBitRow({ bit, index, onRemove }: Props) {
       </button>
       <span className="font-mono text-gray-400 text-xs w-5">{index + 1}</span>
       {colorMeta && <div className={`w-2 h-2 rounded-full ${colorMeta.dot} shrink-0`} />}
-      <span className="flex-1 font-medium text-gray-800">{bit.title}</span>
+      <span className="flex-1 font-medium text-gray-900">{bit.title}</span>
       <button
         onClick={onRemove}
         className="p-1 rounded-md hover:bg-red-50 text-gray-400 hover:text-red-600 transition-all"

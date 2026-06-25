@@ -18,6 +18,7 @@ import {
 import { useStore } from "../../store/useStore";
 import { useI18n } from "../../i18n";
 import SortableBitRow from "./SortableBitRow";
+import Button from "../ui/Button";
 import { getColorMeta, type Monologue } from "../../types";
 
 interface Props {
@@ -60,17 +61,17 @@ export default function MonologueCard({ monologue }: Props) {
         {editing ? (
           <div className="flex gap-2 items-center flex-1 mr-3">
             <input
-              className="flex-1 border border-gray-200 rounded-xl px-3 py-1.5 text-sm outline-none focus:border-gray-400 transition-colors"
+              className="flex-1 border border-gray-200 rounded-xl px-3 py-1.5 text-sm outline-none focus:border-gray-400 focus:ring-2 focus:ring-gray-100 transition-colors"
               value={editTitle}
               onChange={(e) => setEditTitle(e.target.value)}
               autoFocus
             />
-            <button
+            <Button
               onClick={() => { updateMonologue(monologue.id, { title: editTitle.trim() }); setEditing(false); }}
-              className="text-sm px-3 py-1.5 bg-gray-900 text-white rounded-lg font-medium hover:bg-gray-800 transition-colors"
+              className="text-sm px-3 py-1.5"
             >
               {t("bit.save")}
-            </button>
+            </Button>
             <button onClick={() => setEditing(false)} className="text-sm px-3 py-1.5 text-gray-500 font-medium hover:text-gray-700 transition-colors">{t("bit.cancel")}</button>
           </div>
         ) : (
