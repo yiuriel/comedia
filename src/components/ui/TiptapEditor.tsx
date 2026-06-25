@@ -2,6 +2,7 @@ import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import Placeholder from "@tiptap/extension-placeholder";
 import { useEffect } from "react";
+import { useI18n } from "../../i18n";
 
 interface Props {
   content: string;
@@ -10,10 +11,12 @@ interface Props {
 }
 
 export default function TiptapEditor({ content, onChange, placeholder }: Props) {
+  const { t } = useI18n();
+
   const editor = useEditor({
     extensions: [
       StarterKit,
-      Placeholder.configure({ placeholder: placeholder ?? "Start writing..." }),
+      Placeholder.configure({ placeholder: placeholder ?? t("editor.placeholder") }),
     ],
     content,
     onUpdate: ({ editor }) => {

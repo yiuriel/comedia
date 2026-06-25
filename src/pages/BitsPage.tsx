@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Plus, PanelRightOpen, PanelRightClose } from "lucide-react";
 import { useStore } from "../store/useStore";
+import { useI18n } from "../i18n";
 import BitCard from "../components/bits/BitCard";
 import NewBitForm from "../components/bits/NewBitForm";
 import ConceptsPanel from "../components/concepts/ConceptsPanel";
@@ -9,6 +10,7 @@ import EmptyState from "../components/ui/EmptyState";
 
 export default function BitsPage() {
   const { bits } = useStore();
+  const { t } = useI18n();
   const [showNew, setShowNew] = useState(false);
   const [showConcepts, setShowConcepts] = useState(true);
 
@@ -18,8 +20,8 @@ export default function BitsPage() {
         <div className="shrink-0 space-y-4 pb-4">
           <div className="flex items-start justify-between gap-4">
             <PageHeader
-              title="Bits"
-              description="A bit is a self-contained comedy premise — a joke, observation, or bit of material you can develop and combine with others."
+              title={t("bits.title")}
+              description={t("bits.description")}
             />
             <button
               onClick={() => setShowConcepts(!showConcepts)}
@@ -28,7 +30,7 @@ export default function BitsPage() {
                   ? "bg-violet-50 text-violet-600 border-violet-200"
                   : "bg-white text-gray-400 border-gray-200 hover:text-gray-600 hover:bg-gray-50"
               }`}
-              title={showConcepts ? "Hide concepts panel" : "Show concepts panel"}
+              title={showConcepts ? t("panel.hide") : t("panel.show")}
             >
               {showConcepts ? <PanelRightClose size={16} /> : <PanelRightOpen size={16} />}
             </button>
@@ -39,7 +41,7 @@ export default function BitsPage() {
               onClick={() => setShowNew(true)}
               className="inline-flex items-center gap-2 px-4 py-2 bg-gray-900 text-white rounded-xl text-sm font-medium hover:bg-gray-800 transition-all shadow-sm hover:shadow-md active:scale-[0.98]"
             >
-              <Plus size={15} /> New Bit
+              <Plus size={15} /> {t("bits.new")}
             </button>
           )}
 
@@ -49,8 +51,8 @@ export default function BitsPage() {
         <div className="flex-1 min-h-0 overflow-y-auto space-y-2 pb-4">
           {bits.length === 0 && !showNew && (
             <EmptyState
-              title="No bits yet."
-              description='Click "New Bit" to write your first piece of material.'
+              title={t("bits.empty.title")}
+              description={t("bits.empty.description")}
             />
           )}
           {bits.map((b) => (

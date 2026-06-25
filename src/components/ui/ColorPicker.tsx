@@ -1,5 +1,6 @@
 import { Palette } from "lucide-react";
 import { BIT_COLORS, type BitColor } from "../../types";
+import { useI18n } from "../../i18n";
 
 interface Props {
   value: BitColor;
@@ -7,6 +8,8 @@ interface Props {
 }
 
 export default function ColorPicker({ value, onChange }: Props) {
+  const { t } = useI18n();
+
   return (
     <div className="flex items-center gap-1.5">
       <Palette size={14} className="text-gray-400 shrink-0" />
@@ -15,7 +18,7 @@ export default function ColorPicker({ value, onChange }: Props) {
           <button
             key={c.value}
             onClick={() => onChange(value === c.value ? null : c.value)}
-            title={c.label}
+            title={t(`color.${c.value}`)}
             className={`w-5 h-5 rounded-full ${c.dot} border-2 transition-all duration-150 ${
               value === c.value
                 ? "border-gray-900 scale-110 ring-2 ring-gray-900/20"

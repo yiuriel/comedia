@@ -16,6 +16,7 @@ import {
   arrayMove,
 } from "@dnd-kit/sortable";
 import { useStore } from "../../store/useStore";
+import { useI18n } from "../../i18n";
 import SortableBitRow from "./SortableBitRow";
 import { getColorMeta, type Monologue } from "../../types";
 
@@ -25,6 +26,7 @@ interface Props {
 
 export default function MonologueCard({ monologue }: Props) {
   const { bits, updateMonologue, deleteMonologue } = useStore();
+  const { t } = useI18n();
   const [editing, setEditing] = useState(false);
   const [editTitle, setEditTitle] = useState(monologue.title);
 
@@ -67,15 +69,15 @@ export default function MonologueCard({ monologue }: Props) {
               onClick={() => { updateMonologue(monologue.id, { title: editTitle.trim() }); setEditing(false); }}
               className="text-sm px-3 py-1.5 bg-gray-900 text-white rounded-lg font-medium hover:bg-gray-800 transition-colors"
             >
-              Save
+              {t("bit.save")}
             </button>
-            <button onClick={() => setEditing(false)} className="text-sm px-3 py-1.5 text-gray-500 font-medium hover:text-gray-700 transition-colors">Cancel</button>
+            <button onClick={() => setEditing(false)} className="text-sm px-3 py-1.5 text-gray-500 font-medium hover:text-gray-700 transition-colors">{t("bit.cancel")}</button>
           </div>
         ) : (
           <div className="flex-1">
             <h3 className="text-lg font-semibold text-gray-900">{monologue.title}</h3>
             <p className="text-xs text-gray-400 mt-0.5">
-              {selectedBits.length} bit{selectedBits.length !== 1 ? "s" : ""} · ~{totalMinutes} min
+              {t("monologue.bits_count", { count: selectedBits.length })} · {t("monologue.minutes", { minutes: totalMinutes })}
             </p>
           </div>
         )}
@@ -126,7 +128,7 @@ export default function MonologueCard({ monologue }: Props) {
           </div>
         ) : (
           <p className="text-xs text-gray-400">
-            {bits.length === 0 ? "Create some bits first to add them here." : "All bits are in this monologue."}
+            {bits.length === 0 ? t("monologue.bits.empty") : t("monologue.bits.add_all")}
           </p>
         )}
       </div>

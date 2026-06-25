@@ -1,4 +1,5 @@
 import { AlertTriangle, X } from "lucide-react";
+import { useI18n } from "../../i18n";
 
 interface Props {
   title: string;
@@ -8,6 +9,8 @@ interface Props {
 }
 
 export default function ConfirmDialog({ title, message, onConfirm, onCancel }: Props) {
+  const { t } = useI18n();
+
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
       <div className="absolute inset-0 bg-black/30 backdrop-blur-sm" onClick={onCancel} />
@@ -32,13 +35,13 @@ export default function ConfirmDialog({ title, message, onConfirm, onCancel }: P
             onClick={onCancel}
             className="px-4 py-2 text-sm font-medium text-gray-600 hover:text-gray-800 transition-colors"
           >
-            Cancel
+            {t("confirm.cancel")}
           </button>
           <button
             onClick={onConfirm}
             className="px-4 py-2 bg-red-600 text-white text-sm font-medium rounded-xl hover:bg-red-700 transition-colors"
           >
-            Delete
+            {t("confirm.delete")}
           </button>
         </div>
       </div>
